@@ -12,3 +12,11 @@ Welcome page will have instructions for getting started and nav bar
 Each page will offer all crud operations and Nav bar.
 
 If I have time, I will add a budget report. Yearly report by month that shows a budgeted amount and an actual amount logging the differences in each category. 
+
+Instructor Approved.
+
+#Progress
+##Routes
+Set up first route to transactions on server and it didn't pass through Postman. Checking the url.
+you have to have the full name in the url for postman, can't just have localhost:5000, has to be localhost:5000/api/transactions. All 4 CRUD ops in transactionRoutes get status 200, do a commit.
+
