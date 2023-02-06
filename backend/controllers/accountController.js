@@ -2,13 +2,17 @@
 // GET account list
 //route GET /api/accounts
 const getAccounts = (req, res) => {
-    res.status(200).json({ message: ' Get Account list ' })
+    res.status(200).json({message: 'Get account list'})
 }
 
 // POST new Account
 //route POST /api/accounts
 const newAccount = (req, res) => {
-    res.status(200).json({ message: "Create Account"})
+    if (!req.body.text) {
+        res.status(400)
+        throw new Error('Please add a text field')
+    }
+    res.status(200).json({ message: "new account"})
    
 }
 

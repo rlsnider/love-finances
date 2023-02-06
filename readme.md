@@ -28,7 +28,22 @@ do commit.
 ##Set up routes and controllers for payees
 set up routes and controllers for payees. add to server.js, check in postman, do commit.
 ##Set up routes and controllers for accounts and categories. 
-don't forget to add to server .js. Check in postman, do commit.
+don't forget to add to server.js. Check in postman, do commit.
+##ERROR HANDLERS
+Work with postman, in one of the routes that you'll be adding some text, like accounts(account name, etc), in the POST route, console.log(req.body). In postman, create a Post request and in the body, on the urlencoded line, create a key value pair, ie text: my first account name.
+If you send the request, nothing happens, but if you do uncheck the key:value pair, there won't be req.body to display. (JS won't like it.)
+
+Create an if statement from the console.log: const newAccount = (req, res) => {
+    if (!req.body.text) {
+        res.status(400)
+        throw new Error('Please add a text field')
+    }
+    res.status(200).json({ message: "Create Account"})
+    }
+    replace your standard json message with the express error handler. Now your code breakes if you do not add a text field, but not to worry, go to middleware/errorMiddleware.js.
+    construct an errorHandler which takes 4 arguments, err, req, res, next -
+    with the variable called statusCode and create a ternary res.statusCode ? statusCode : 500. In other words, list the status code, but if that doesn't work list the 500 status code. respond with json, message: err.message, (set error message) the call the stack: but only if we are not in production. export you errorHandler, import it to server.js. Under the routes in server.js att app.use(errorHandler). This overrides the default express error handler. Add the error handlers to the other "POST" routes.
+    check in postman and do a commit. Now it's time to add the data base.
 
 
 

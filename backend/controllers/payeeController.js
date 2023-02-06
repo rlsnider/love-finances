@@ -8,6 +8,10 @@ const getPayees = (req, res) => {
 // POST new Payee
 //route POST /api/payees
 const newPayee = (req, res) => {
+    if (!req.body.text) {
+        res.status(400)
+        throw new Error('Please add a text field')
+    }
     res.status(200).json({ message: "Create Payee"})
    
 }
