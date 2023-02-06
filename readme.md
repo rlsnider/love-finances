@@ -18,5 +18,13 @@ Instructor Approved.
 #Progress
 ##Routes
 Set up first route to transactions on server and it didn't pass through Postman. Checking the url.
-you have to have the full name in the url for postman, can't just have localhost:5000, has to be localhost:5000/api/transactions. All 4 CRUD ops in transactionRoutes get status 200, do a commit.
+you have to have the full name in the url for postman, can't just have localhost:5000, has to be localhost:5000/api/transactions. All 4 CRUD operatioinss in transactionRoutes get status 200, do a commit.
+##Controllers
+set up first controller route with functions, export 4 CRUD functions at bottom of page, import to route page, delete the funcion off of the route and replace with the function name. 
+check postman-- status 200 all good.
+clean up transactionRoutes.js, make it dryer. 
+check postman, all good.
+
+
+
 
