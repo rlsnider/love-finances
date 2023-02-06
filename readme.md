@@ -23,7 +23,14 @@ you have to have the full name in the url for postman, can't just have localhost
 set up first controller route with functions, export 4 CRUD functions at bottom of page, import to route page, delete the funcion off of the route and replace with the function name. 
 check postman-- status 200 all good.
 clean up transactionRoutes.js, make it dryer. 
-check postman, all good.
+check postman, all good. 
+do commit.
+##Set up routes and controllers for payees
+set up routes and controllers for payees. add to server.js, check in postman, do commit.
+##Set up routes and controllers for accounts and categories. 
+don't forget to add to server .js. Check in postman, do commit.
+
+
 
 
 
