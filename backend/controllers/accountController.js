@@ -3,6 +3,7 @@
 //route GET /api/accounts
 const getAccounts = (req, res) => {
     res.status(200).json({message: 'Get account list'})
+    console.log();
 }
 
 // POST new Account
