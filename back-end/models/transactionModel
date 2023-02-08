@@ -1,0 +1,45 @@
+// const mongoose = require('mongoose')
+
+// const transactionSchema = mongoose.Schema({
+//     account: {
+//         //ref to accounts db 
+//     },
+//     date: {
+//         type: String, //how do you format this?
+//     },
+//     transaction_num:{
+//         type: String, 
+//         required: false,
+//     },
+//     payee: {
+//         //ref to payee db
+//     },
+//     memo:{
+//         type: String
+//     }, 
+//     category: {
+//         //ref to category db.
+//     },
+//     reconsiled: {
+//         type: boolean,
+//     },
+//     payment: {
+//         type: Integer,//format for currency? if null then input = 0
+//         //ref to account and category?
+//     },
+//     deposit: {
+//         type: Integer,//format for currency? if null then input = 0
+//         //ref to account and category?
+//     },
+//     account_balance: {
+//         type:Integer,//format for currency?  keep running total of all payments and deposits for this account.
+//     },
+//     category_balance:{
+//         type:Integer,//format for currency? keep running total of all payments and deposits for this category
+//     },
+//     balance: {
+//         type: Integer,//format for currency? Balance of all accounts.
+//     }
+// })
+
+// module.exports = mongoose.model('Transaction', transactionSchema)
