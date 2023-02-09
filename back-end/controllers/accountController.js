@@ -1,10 +1,11 @@
 const asyncHandler = require('express-async-handler')
 const Account = require('../models/accountModel')
+const User = require('../models/userModel')
 
 // GET account list
 //route GET /api/accounts
 const getAccounts = asyncHandler(async(req, res) => {
-    const accounts = await Account.find()
+    const accounts = await Account.find({ user: req.user.id })
     res.status(200).json(accounts)
 })
 
@@ -17,7 +18,8 @@ const newAccount = asyncHandler(async(req, res) => {
         throw new Error('Could not find account')
     }
     const account = await Account.create({
-        name: req.body.name
+        name: req.body.name,
+        user: req.user.id
     })
     res.status(200).json(account)
    
@@ -25,15 +27,28 @@ const newAccount = asyncHandler(async(req, res) => {
 
 // PUT edit Account
 //route PUT /api/accounts/:id
-const editAccount = asyncHandler(async(req, res) => {
+const updateAccount = asyncHandler(async(req, res) => {
     const account = await Account.findById(req.params.id)
 
     if (!account) {
         res.status(400)
         throw new error('Account not found')
     }
-    const editedAccount = await Account.findByIdAndUpdate(req.params.id, req.body, {new: true})
-    res.status(200).json(editedAccount)
+    const user = await User.findById(req.user.id)
+
+    //check for user
+    if (!user) {
+        res.status(401)
+        throw new Error('User not found')
+    }
+
+    //Make sure the logged in user matches the user account
+    if(account.user.toString() !== user.id){
+        res.status(401)
+        throw new Error('User not authorized')        
+    }
+    const updatedAccount = await Account.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    res.status(200).json(updatedAccount)
 })
 
 //DELETE delete Account
@@ -45,6 +60,19 @@ const deleteAccount = asyncHandler(async(req, res) => {
         res.status(400)
         throw new error('Account not found')
     }
+    //Check for user
+    const user = await User.findById(req.user.id)
+    
+    if (!user) {
+        res.status(401)
+        throw new Error('User not found')
+    }
+
+    //logged in user matches user account
+    if (account.user.toString() !== user.id) {
+        res.status(401)
+        throw new Error('User not authorized')
+    }
     await account.remove()
     res.status(200).json({ id: req.params.id })
 })
@@ -52,6 +80,6 @@ const deleteAccount = asyncHandler(async(req, res) => {
 module.exports = {
     getAccounts,
     newAccount,
-    editAccount,
+    updateAccount,
     deleteAccount
 }
