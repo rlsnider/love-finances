@@ -3,6 +3,7 @@ const Category = require('../models/categoryModel');
 const Account = require('../models/accountModel');
 const Transaction = require('../models/transactionModel');
 const Payee = require('../models/payeeModel');
+const User = require('../models/userModel')
 
 // GET transaction log
 //route GET /api/transactions
