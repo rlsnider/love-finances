@@ -1,10 +1,15 @@
-import logo from './logo.svg';
+import React, { useState } from "react";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import Login from "./containers/Login.js";
 
 function App() {
   return (
     <div className="App">
-      <h1>Love Finance</h1>
+      <header className="App-header">
+        <h1>Love Finances</h1>
+        <Login />
+      </header>
     </div>
   );
 }
