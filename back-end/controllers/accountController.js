@@ -14,7 +14,7 @@ const getAccounts = asyncHandler(async(req, res) => {
 const newAccount = asyncHandler(async(req, res) => {
     if (!req.body.name) {
         res.status(400)
-        throw new Error('Please add a text field')
+        throw new Error('Could not find account')
     }
     const account = await Account.create({
         name: req.body.name
@@ -32,8 +32,8 @@ const editAccount = asyncHandler(async(req, res) => {
         res.status(400)
         throw new error('Account not found')
     }
-    const editedAccount = await Account.findByIdAndUpdate(req.params.id, req.body, {new: true,})
-res.status(200).json(editedAccount)
+    const editedAccount = await Account.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    res.status(200).json(editedAccount)
 })
 
 //DELETE delete Account

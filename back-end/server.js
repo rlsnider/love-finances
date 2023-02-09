@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/transactions', require('./routes/transactionRoutes'))
-app.use('/api/payee', require('./routes/payeeRoutes'))
+app.use('/api/payees', require('./routes/payeeRoutes'))
 app.use('/api/accounts', require('./routes/accountRoutes'))
 app.use('/api/categories', require('./routes/categoryRoutes'))
 

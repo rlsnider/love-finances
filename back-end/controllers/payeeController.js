@@ -4,30 +4,45 @@ const Payee = require('../models/payeeModel');
 // GET payee list
 //route GET /api/payees
 const getPayees = asyncHandler(async(req, res) => {
-    res.status(200).json({ message: ' Get Payees ' })
+    const payees = await Payee.find()
+    res.status(200).json(payees)
 })
-
 // POST new Payee
 //route POST /api/payees
 const newPayee = asyncHandler(async(req, res) => {
-    if (!req.body.text) {
+    if (!req.body.name) {
         res.status(400)
-        throw new Error('Please add a text field')
+        throw new Error('Please add new Payee')
     }
-    res.status(200).json({ message: "Create Payee"})
+    const payee = await Payee.create({
+        name: req.body.name
+    })
+    res.status(200).json(payee)
    
 })
 
 // PUT edit Payee
 //route PUT /api/payee/:id
 const editPayee = asyncHandler(async(req, res) => {
-res.status(200).json({ message: "Edit Payee"})
+    const payee = await Payee.findById(req.params.id)
+    if(!payee) {
+        res.status(400)
+        throw new Error('Could not find payee')
+    }
+    const editedpayee = await Payee.findByIdAndUpdate(req.params.id, req.body, {new: true})
+res.status(200).json(editedpayee)
 })
 
 //DELETE delete Payee
 //route DELETE /api/payee/:id
 const deletePayee = asyncHandler(async(req, res) => {
-    res.status(200).json({ message: "Delete this payee"})
+    const payee = await Payee.findById(req.params.id)
+    if(!payee) {
+        res.status(400)
+        throw new Error('Could not find payee')
+    }
+    await payee.remove()
+    res.status(200).json({ id: req.params.id})
 })
 
 module.exports = {
