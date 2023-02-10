@@ -1,17 +1,24 @@
-import React, { useState } from "react";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import './App.css';
-import Login from "./containers/Login.js";
-
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import Dashboard from './containers/Dashboard'
+import Register from './containers/Register'
+import Login from "./containers/Login"
+import Header from './components/Header'
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Love Finances</h1>
-        <Login />
-      </header>
-    </div>
+ <>
+ <Router>
+  <div className='container'>
+   <Header />
+   <Routes>
+    <Route path='/' element={<Dashboard />} />
+    <Route path='/login' element={<Login />} />
+    <Route path='/register' element={<Register />} />
+    </Routes> 
+  </div>
+ </Router>
+ </>
   );
 }
+  
 
 export default App;

@@ -16,7 +16,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node back-end/server.js",
-    "server": "nodemon back-end/server.js"
+    "server": "nodemon back-end/server.js",
+    "client": "npm start --prefix front-end"
   },
   "repository": {
     "type": "git",

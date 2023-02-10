@@ -11,7 +11,7 @@ const getTransactions = asyncHandler(async(req, res) => {
     res.status(200).json({ message: 'Get Transactions' })
 })
 
-// POST new Transaction
+// POST new Transaction   //helper?? Maybe here .
 //route POST /api/transactions
 const newTransaction = asyncHandler(async(req, res) => {
     res.status(200).json({ message: "Create Transaction"})
@@ -24,7 +24,7 @@ const editTransaction = asyncHandler(async(req, res) => {
 res.status(200).json({ message: "Edit Transaction"})
 })
 
-//DELETE delete Transaction
+//DELETE delete Transaction  //cannot delete a transaction, must enter a negation of this transaction.
 //route DELETE /api/transaction/id
 const deleteTransaction = asyncHandler(async(req, res) => {
     res.status(200).json({ message: "Delete this transaction"})
