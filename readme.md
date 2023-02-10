@@ -66,6 +66,11 @@ Create an if statement from the console.log: const newAccount = (req, res) => {
      const connectDB = async() => {
         try/catch...
      } (connects to the db and has a console log that is in red and underlined to show that connection was successful)
+     ##Authenticationa and authorization
+     Bcrypt and JWT added in back-end. 
+
+     ##Protection of routes-
+     only logged in user can get that users payees, categories and accounts.
      
 
 
