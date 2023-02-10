@@ -1,10 +1,11 @@
 const asyncHandler = require('express-async-handler');
 const Category = require('../models/categoryModel');
+const User = require('../models/userModel');
 
 // GET category list
 //route GET /api/categories
 const getCategories = asyncHandler(async(req, res) => {
-    const categories = await Category.find()
+    const categories = await Category.find({ user: req.user.id })
     res.status(200).json(categories)
 })
 
@@ -16,7 +17,8 @@ const newCategory = asyncHandler(async(req, res) => {
         throw new Error('Please add a category name')
     }
     const category = await Category.create({
-        name: req.body.name
+        name: req.body.name,
+        user: req.user.id
     })
     res.status(200).json(category)
    
@@ -31,7 +33,21 @@ const editCategory = asyncHandler(async(req, res) => {
         res.status(400)
         throw new Error('Category not found')
     }
+    const user = await User.findById(req.user.id)
+
+    //check for user
+    if (!user) {
+        res.status(401)
+        throw new Error('User not found')
+    }
+ //Make sure the logged in user matches the user category
+    if(category.user.toString() !== user.id){
+        res.status(401)
+        throw new Error('User not authorized')        
+    }
+
     const editedCategory = await Category.findByIdAndUpdate(req.params.id, req.body, {new: true,})
+
     res.status(200).json(editedCategory)
 
 })
@@ -44,6 +60,13 @@ const deleteCategory = asyncHandler(async(req, res) => {
     if(!category){
         res.status(400)
         throw new Error('Category not found')
+    }
+    const user = await User.findById(req.user.id)
+    
+    //logged in user matches user category
+    if (category.user.toString() !== user.id) {
+        res.status(401)
+        throw new Error('User not authorized')
     }
     await category.remove()
     res.status(200).json({ id: req.params.id })
