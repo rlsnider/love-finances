@@ -48,7 +48,7 @@ const successMessage = () => {
 		style={{
 		display: submitted ? '' : 'none',
 		}}>
-		<h1>User {name} successfully registered!!</h1>
+		<h1>Registered successfully!</h1>
 	</div>
 	);
 };

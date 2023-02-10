@@ -37,19 +37,21 @@
   
   .error{
   display: block;
-  background-color: red;
-  color: white;
+  background-color: white;
+  color: red;
   width: fit-content;
   height: 50px;
   padding: 5px;
+  margin-bottom: 30px;
   }
   
   .success{
   display: block;
-  background-color: lightblue;
+  background-color: white;
   color: black;
   width: fit-content;
   height: 50px;
   padding: 5px;
+  margin-bottom: 30px;
   }
   
