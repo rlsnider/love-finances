@@ -1,4 +1,10 @@
 #Love my Finances
+
+#.env file
+NODE_ENV = development
+PORT = 5000
+MONGO_URI = mongodb+srv://rlsnider:hsk36600@cluster0.iiieso4.mongodb.net/finances?retryWrites=true&w=majority
+
 ##Views
 1. Welcome/login page
 User can login, create a user account, edit user account 
@@ -45,6 +51,27 @@ Create an if statement from the console.log: const newAccount = (req, res) => {
     with the variable called statusCode and create a ternary res.statusCode ? statusCode : 500. In other words, list the status code, but if that doesn't work list the 500 status code. respond with json, message: err.message, (set error message) the call the stack: but only if we are not in production. export you errorHandler, import it to server.js. Under the routes in server.js att app.use(errorHandler). This overrides the default express error handler. Add the error handlers to the other "POST" routes.
     check in postman and do a commit. Now it's time to add the data base.
 
+    Before starting DB, set all controllers to "async". Also, install express-async-handler and wrap the function in the asyncHandler. That way you do not have to use the try/catch.
+    
+    ##CREATE DataBase
+     organization name: milestone3
+     project name: loveFinances
+     DataBase user: rlsnider
+     PW: hsk36600
+     Created 5 collections, users, transactions, categories, payees, and accounts.
+     connect to mongo Compass
+     add connection string to .env file, with password and db file name inserted.
+     create config dir in back-end with file named db.js.
+     require mongoose, create an async function:
+     const connectDB = async() => {
+        try/catch...
+     } (connects to the db and has a console log that is in red and underlined to show that connection was successful)
+     ##Authenticationa and authorization
+     Bcrypt and JWT added in back-end. 
+
+     ##Protection of routes-
+     only logged in user can get that users payees, categories and accounts.
+     
 
 
 
