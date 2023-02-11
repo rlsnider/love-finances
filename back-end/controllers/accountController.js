@@ -15,7 +15,7 @@ const getAccounts = asyncHandler(async(req, res) => {
 const newAccount = asyncHandler(async(req, res) => {
     if (!req.body.name) {
         res.status(400)
-        throw new Error('Could not find account')
+        throw new Error('Could not create account')
     }
     const account = await Account.create({
         name: req.body.name,
@@ -34,16 +34,15 @@ const updateAccount = asyncHandler(async(req, res) => {
         res.status(400)
         throw new error('Account not found')
     }
-    const user = await User.findById(req.user.id)
 
     //check for user
-    if (!user) {
+    if (!req.user) {
         res.status(401)
         throw new Error('User not found')
     }
 
     //Make sure the logged in user matches the user account
-    if(account.user.toString() !== user.id){
+    if(account.user.toString() !== req.user.id){
         res.status(401)
         throw new Error('User not authorized')        
     }
@@ -61,15 +60,15 @@ const deleteAccount = asyncHandler(async(req, res) => {
         throw new error('Account not found')
     }
     //Check for user
-    const user = await User.findById(req.user.id)
+   
     
-    if (!user) {
+    if (!req.user) {
         res.status(401)
         throw new Error('User not found')
     }
 
     //logged in user matches user account
-    if (account.user.toString() !== user.id) {
+    if (account.user.toString() !== req.user.id) {
         res.status(401)
         throw new Error('User not authorized')
     }
