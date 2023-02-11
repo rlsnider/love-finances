@@ -78,7 +78,7 @@ export const categorySlice = createSlice({
             .addCase(createCategory.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.accounts.push(action.payload)
+                state.categories.push(action.payload)
             })
             .addCase(createCategory.rejected, (state, action) => {
                 state.isLoading = false
@@ -92,7 +92,7 @@ export const categorySlice = createSlice({
             .addCase(getCategories.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.accounts = action.payload
+                state.categories = action.payload
             })
             .addCase(getCategories.rejected, (state, action) => {
                 state.isLoading = false
@@ -106,7 +106,7 @@ export const categorySlice = createSlice({
             .addCase(deleteCategory.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.accounts = state.accounts.filter((account) => account._id !==
+                state.categories = state.categories.filter((category) => category._id !==
                 action.payload.id) 
             })
             .addCase(deleteCategory.rejected, (state, action) => {

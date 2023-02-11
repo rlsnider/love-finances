@@ -20,12 +20,17 @@ function Header() {
             <Link to='/'>Love My Finances</Link>
         </div>
         <ul>
-            {user? (
+            {user ? (
+            <><li>
+            <button className='btn' onClick={onLogout}>
+                <FaSignOutAlt /> Logout
+            </button>
+             </li>
             <li>
-                <button className = 'btn' onClick={onLogout}>
-                    <FaSignOutAlt /> Logout
-                </button>
-            </li> 
+            <Link to='/transactions'>
+                <FaUser /> Transactions
+            </Link>
+                      </li></> 
             ) : (<>         
             <li>
             <Link to='/login'>

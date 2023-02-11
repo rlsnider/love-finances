@@ -5,6 +5,8 @@ import Dashboard from './containers/Dashboard'
 import Register from './containers/Register'
 import Login from "./containers/Login"
 import Header from './components/Header'
+import Transactions from './containers/Transactions'
+
 function App() {
   return (
  <>
@@ -15,6 +17,7 @@ function App() {
     <Route path='/' element={<Dashboard />} />
     <Route path='/login' element={<Login />} />
     <Route path='/register' element={<Register />} />
+    <Route path='/transactions' element={<Transactions />} />
     </Routes> 
   </div>
  </Router>
