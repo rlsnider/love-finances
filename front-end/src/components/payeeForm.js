@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useDispatch} from 'react-redux'
-import {createAccount} from '../features/accounts/accountSlice'
+import {createPayee} from '../features/payees/payeeSlice'
 
-function AccountForm() {
+
+function PayeeForm() {
     const [name, setName] = useState('')
 
     const dispatch = useDispatch()
@@ -10,7 +11,7 @@ function AccountForm() {
     const onSubmit = e => {
         e.preventDefault()
 
-        dispatch(createAccount({name}))
+        dispatch(createPayee({name}))
         setName('')
     }
 
@@ -18,12 +19,12 @@ function AccountForm() {
     <section className='form'>
         <form onSubmit={onSubmit}>
           <div className='form-group'>
-            <label htmlFor='name'>Account</label>
+            <label htmlFor='name'>Payee</label>
             <input type='text' name='name' id='name' value= {name} onChange={(e) => setName(e.target.value)}/>
             </div> 
             <div className='form-group'>
                 <button className='btn btn-block' type='submit'>
-                    Add Account
+                    Add Payee
                 </button>
             </div>
         </form>
@@ -31,4 +32,4 @@ function AccountForm() {
   )
 }
 
-export default AccountForm
+export default PayeeForm
