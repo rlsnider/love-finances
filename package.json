@@ -16,7 +16,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node back-end/server.js",
-    "server": "nodemon back-end/server.js"
+    "server": "nodemon back-end/server.js",
+    "client": "npm start --prefix front-end",
+    "dev": "concurrently \"npm run server\"\"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -29,6 +31,7 @@
   },
   "homepage": "https://github.com/rlsnider/love-finances#readme",
   "devDependencies": {
+    "concurrently": "^7.6.0",
     "nodemon": "^2.0.20"
   }
 }
