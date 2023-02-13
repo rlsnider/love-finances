@@ -8,45 +8,31 @@ const User = require('../models/userModel')
 // GET transaction log
 //route GET /api/transactions
 const getTransactions = asyncHandler(async(req, res) => {
-    res.status(200).json({ message: 'Get Transactions' })
+    const transactions = await Transaction.find({ user: req.user.id })
+    res.status(200).json(transactions)
 })
 
-<<<<<<< HEAD
-// POST new Transaction
-=======
 // POST new Transaction   //helper?? Maybe here .
->>>>>>> main
 //route POST /api/transactions
 const newTransaction = asyncHandler(async(req, res) => {
+    const account = await Account.create({
+        account: req.body.account,
+        date:date,
+        payee: req.body.payee,
+        payment: req.body.amount,
+        deposit: req.body.amount,
+        balance: req.body.amount
+    })
     res.status(200).json({ message: "Create Transaction"})
    
 })
 
-<<<<<<< HEAD
-// PUT edit Transaction
-//route PUT /api/transactions/id
-const editTransaction = asyncHandler(async(req, res) => {
-res.status(200).json({ message: "Edit Transaction"})
-})
-
-//DELETE delete Transaction
-//route DELETE /api/transaction/id
-const deleteTransaction = asyncHandler(async(req, res) => {
-    res.status(200).json({ message: "Delete this transaction"})
-})
-=======
 
 
->>>>>>> main
 
 module.exports = {
     getTransactions,
     newTransaction,
-<<<<<<< HEAD
-    editTransaction,
-    deleteTransaction
-=======
  
   
->>>>>>> main
 }
