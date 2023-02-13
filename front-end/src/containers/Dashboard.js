@@ -3,13 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import AccountForm from '../components/AccountForm'
 import AccountItem from '../components/AccountItem'
-import PayeeForm from '../components/payeeForm'
-import PayeeItem from '../components/payeeItem'
 import CategoryForm from '../components/CategoryForm'
 import CategoryItem from '../components/CategoryItem'
 import Spinner from '../components/Spinner'
 import {getAccounts} from '../features/accounts/accountSlice'
-import {getPayees} from '../features/payees/payeeSlice'
 import {getCategories} from '../features/categories/categorySlice'
 
 
@@ -21,7 +18,6 @@ function Dashboard() {
   const {user} = useSelector((state) => state.auth)
   const {accounts, isLoading, isError, message} = useSelector((state) =>
   state.accounts)
-  const {payees} = useSelector((state) => state.payees)
   const { categories } = useSelector((state) => state.categories)
 
   useEffect (() => {
@@ -32,7 +28,6 @@ function Dashboard() {
       navigate('/login')
     }
     dispatch(getAccounts())
-    dispatch(getPayees())
     dispatch(getCategories())
     
   }, [user, navigate, isError, message, dispatch] ) 
@@ -44,7 +39,10 @@ if (isLoading) {
     <>
       <section className='Heading'>
         <h1>Welcome {user && user.name}</h1>
+        <p>You are now on your way to taking control of your finances.<br/><br/></p>
+        
         <h2>Accounts</h2>
+        <p>Below is your list of accounts.<br/> Make one account for each bank account you wish to track.<br/>The names of your accounts must be unique.<br/>It is sugguested to add your name in front of your account. <br/>Example: Matthew's Credit Card, Sarah's Savings or Ramona's Checking</p>
       </section>
       <AccountForm />
       <section className='content'>
@@ -55,18 +53,12 @@ if (isLoading) {
             ) )}
           </div>
         ) : (<h3>You have not created any accounts yet.</h3>)}
+        <hr />
+        <br />
       </section> 
-       <PayeeForm />
-      <section className='content'>
-        {payees.length > 0 ? (
-          <div className='account'>
-            {payees.map((payee) => (
-              <PayeeItem key={payee._id} payee={payee}/>
-            ) )}
-          </div>
-        ) : (<h3>You have not created any payees yet.</h3>)}
-      </section>
+    <p>Below is a list of your categories. Create categories to track your spending.<br /> Please note that these categories must be unique to your your account, < br/>therefore it is sugguested to add your name before the category.<br /> Example: Matthew's gas, Joe's Rent, Sarah's Electricity.<br/>Be sure to make an opening balance category.</p>
        <CategoryForm />
+      
       <section className='content'>
         {categories.length > 0 ? (
           <div className='account'>
