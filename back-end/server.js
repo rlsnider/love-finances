@@ -12,7 +12,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/transactions', require('./routes/transactionRoutes'))
+<<<<<<< HEAD
 // app.use('/api/payees', require('./routes/payeeRoutes'))
+=======
+app.use('/api/payees', require('./routes/payeeRoutes'))
+>>>>>>> main
 app.use('/api/accounts', require('./routes/accountRoutes'))
 app.use('/api/categories', require('./routes/categoryRoutes'))
 app.use('/api/users', require('./routes/userRoutes'))

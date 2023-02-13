@@ -59,6 +59,7 @@ const deletePayee = asyncHandler(async(req, res) => {
         res.status(400)
         throw new Error('Could not find payee')
     }
+<<<<<<< HEAD
     if (!user) {
         res.status(401)
         throw new Error('User not found')
@@ -67,6 +68,16 @@ const deletePayee = asyncHandler(async(req, res) => {
     
     //Make sure the logged in user matches the user's payee
     if(payee.user.toString() !== user.id){
+=======
+    //Check for User
+    if (!req.user) {
+        res.status(401)
+        throw new Error('User not found')
+    }
+    
+    //Make sure the logged in user matches the user's payee
+    if(payee.user.toString() !== req.user.id){
+>>>>>>> main
         res.status(401)
         throw new Error('User not authorized')        
     }

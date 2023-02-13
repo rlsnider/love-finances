@@ -61,10 +61,21 @@ const deleteCategory = asyncHandler(async(req, res) => {
         res.status(400)
         throw new Error('Category not found')
     }
+<<<<<<< HEAD
     const user = await User.findById(req.user.id)
     
     //logged in user matches user category
     if (category.user.toString() !== user.id) {
+=======
+   //check for user
+   if (!req.user) {
+    res.status(401)
+    throw new Error('User not found')
+   }
+    
+    //logged in user matches user category
+    if (category.user.toString() !== req.user.id) {
+>>>>>>> main
         res.status(401)
         throw new Error('User not authorized')
     }
