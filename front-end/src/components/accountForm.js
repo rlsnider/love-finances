@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useDispatch} from 'react-redux'
-import {createAccount} from '../features/accounts/accountSlice'
+import { useDispatch } from 'react-redux'
+import { createAccount } from '../features/accounts/accountSlice'
 
 function AccountForm() {
     const [name, setName] = useState('')
