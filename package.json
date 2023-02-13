@@ -1,20 +1,12 @@
 {
   "dependencies": {
-<<<<<<< HEAD
     "bcrypt": "^5.1.0",
-=======
->>>>>>> main
-    "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.0",
-<<<<<<< HEAD
     "mongoose": "^6.9.1",
-=======
-    "mongoose": "^6.9.0",
->>>>>>> main
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1"
   },
@@ -24,13 +16,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node back-end/server.js",
-<<<<<<< HEAD
-    "server": "nodemon back-end/server.js"
-=======
     "server": "nodemon back-end/server.js",
     "client": "npm start --prefix front-end",
     "dev": "concurrently \"npm run server\"\"npm run client\""
->>>>>>> main
   },
   "repository": {
     "type": "git",
