@@ -1,4 +1,4 @@
-import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
+import { FaAtom, FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import {logout, reset} from '../features/auth/authSlice'
@@ -17,20 +17,22 @@ function Header() {
   return (
     <header className='header'>
         <div className="logo">
-            <Link to='/'>Love My Finances</Link>
+            <Link to='/'><FaAtom /> Love Finances</Link>
         </div>
         <ul>
             {user ? (
-            <><li>
-            <button className='btn' onClick={onLogout}>
-                <FaSignOutAlt /> Logout
-            </button>
-             </li>
-            <li>
+            <>
+             <li>
             <Link to='/transactions'>
-                <FaUser /> Transactions
+                <FaUser /> Profile
             </Link>
-                      </li></> 
+                      </li>
+            <li>
+                <button className='btn' onClick={onLogout}>
+                    <FaSignOutAlt /> Logout
+                </button>
+             </li>
+           </> 
             ) : (<>         
             <li>
             <Link to='/login'>
