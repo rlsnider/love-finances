@@ -10,7 +10,10 @@ const data = [
 function Transactions() {
   return (
     <div className="App">
-      <table>
+      <h2>Transaction History</h2>
+      <br/>
+      <br/>
+      <table class='history'>
           <tr>
             <th>Balance</th>
             {/* Withdrawal or deposit */}
