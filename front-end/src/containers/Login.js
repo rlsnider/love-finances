@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { FaSignInAlt} from 'react-icons/fa'
+import { FcCurrencyExchange } from 'react-icons/fc'
 import{ useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import {login, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
+import './login.css'
 
 function Login() {
   const [ formData, setFormData] = useState({
@@ -58,11 +60,11 @@ function Login() {
   return <>
     <section className="heading">
       <h1>
-        <FaSignInAlt/> Login
+        <p>  <FcCurrencyExchange /> Please sign in</p>
       </h1>
-      <p>Please sign in</p>
-    </section>
-    <section className="form">
+        <p><FaSignInAlt/> Please sign in</p>
+      </section>
+      <section className="form">
       <form onSubmit={onSubmit}>
 
         <div className="form-group">

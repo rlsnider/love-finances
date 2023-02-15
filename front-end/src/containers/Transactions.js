@@ -1,38 +1,57 @@
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
+import { useEffect } from 'react'
+import {useNavigate} from 'react-router-dom'
+import {getAccounts} from '../features/accounts/accountSlice'
+import {getCategories} from '..features/categories/categorySlice'
+import Spinner from '../components/Spinner'
+import TransactionForm from '../components/TransactionForm'
 
 function Transactions() {
-    const {user} =useSelector((state) => state.auth)
-  return (
-  <>
-  <div>
-    <h1> Welcome {user && user.name}</h1>
-    <p>Start each account with a category of Account Balance.<br/>Example:Account:Matthew's Savings Category: Opening Balance Date: 2/12/2023 <br/>Payee: opening Balance Deposit: 500 Account Total 500</p>
-  </div>
-  <div>
-   <table>
-    <tr>
-        <th>Account</th>
-            <td>{}</td>
-        <th>Category</th>
-            <td></td>
-        <th>Date</th>
-            <td></td>
-        <th>Payee</th>
-            <td></td>
-        <th>Payment</th>
-            <td></td>
-        <th>Deposit</th>
-            <td></td>
-        <th>Account Balance</th>
-            <td></td>
-        <th>Total</th>
-            <td></td>
-    </tr>
-   </table>
-  </div>
-  </>
+   const navigate = useNavigate()
+   const dispatch = useDispatch()
+
+   const {user} = useSelector((state) => state.auth)
+   const {accounts, isLoading, isError, message}  = useSelector((state) => state.accounts)
+   const { categories } = useSelector((state) => state.categories)
+   const {transactions} = useSelector((state) => state.transactions)
+  useEffect(()=>{
+    if(isError) {
+      console.log(message);
+    }
+    if(!user){
+      navigate('/login')
+    }
+
+    if(!accounts) {
+      navigate('/')
+    }
+    if(!categories) {
+      navigate('/')
+    }
+    dispatch(getAccounts())
+    dispatch(getCategories())
+  }, [user, navigate, isError, message, dispatch ])  
     
-  )
-}
+  if(isLoading) {
+    return <Spinner />
+  }
+   
+  return (
+<>
+<section>
+    <h1>Transaction Log</h1>
+
+</section>
+<TransactionForm />
+<section>
+    {transactions.length > 0 ? (
+     <div></div>
+    ): (<h3>You have not created any transactions yet.</h3>)}
+</section>
+</>
+  
+    
+    )
+  }
 
 export default Transactions
